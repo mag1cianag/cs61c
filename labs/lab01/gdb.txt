@@ -1,9 +1,9 @@
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
+1. set args argslist
+2. break linenumber
+3.n
+4.s
+5.c
+6.p
+7.display
+8.info locals
+9.quit
