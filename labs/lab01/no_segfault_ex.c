@@ -4,6 +4,7 @@ int main() {
     unsigned total = 0;
     for (int j = 0; j < sizeof(a); j++) {
         total += a[j];
+        printf("j is %d\na[%d] is %d\ntotal is %d\n",j,j,a[j],total);
     }
     printf("sum of array is %d\n", total);
 }
