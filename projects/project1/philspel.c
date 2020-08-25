@@ -167,13 +167,10 @@ void readDictionary(char *filename) {
         fprintf(stderr, "file %s does not exist\n", filename);
         exit(0);
     }
-    char *nWord;
-    int initWordSize = 8;
-    char delimiter;
-    delimiter = readWord(fp, &nWord, initWordSize);
-    while (delimiter != 0) {
-        insertData(dictionary, (void *)nWord, (void *)nWord);
-        delimiter = readWord(fp, &nWord, initWordSize);
+    char *line = malloc(sizeof(char));
+    while(!feof(fp)){
+        fscanf(fp,"%[^\n]\n",line);
+        insertData(dictionary,(void*)line,(void*)line);
     }
     fclose(fp);
 }
