@@ -212,38 +212,40 @@ void appendWord(char **dest, unsigned int *size, char *word, char del) {
  * of your grade, you can no longer assume words have a bounded length.
  */
 void processInput() {
-    char *nWord;
-    unsigned int outsize = 8;
-    int initWordSize = 8;
-    char delimiter = readWord(stdin, &nWord, initWordSize);
-    char *out = malloc(sizeof(char) * initWordSize);
-    out[0] = '\0';
-    char *message = " [sic]";
-    while (delimiter != 0) {
-        // convert all but initial letter to lowercase
-        char *nWORD = malloc(sizeof(char) * strlen(nWord));
-        strcpy(nWORD, nWord);
-        for (int j = 1; j < strlen(nWORD); ++j) {
-            nWORD[j] = (char) tolower(nWORD[j]);
-        }
-        //convert all letters to lower case
-        char *nword = malloc(sizeof(char) * strlen(nWord));
-        strcpy(nword, nWord);
-        for (int i = 0; i < strlen(nword); ++i) {
-            nword[i] = (char) tolower(nword[i]);
-        }
-        if (!findData(dictionary, nWord) && !findData(dictionary, nWORD) && !findData(dictionary, nword)) {
-            appendWord(&out, &outsize, nWord, '\0');
-            appendWord(&out, &outsize, message, delimiter);
-        } else {
-            appendWord(&out, &outsize, nWord, delimiter);
-        }
-        free(nWORD);
-        free(nword);
-        delimiter = readWord(stdin, &nWord, initWordSize);
+    FILE *fp = fopen("sampleInput","r");
+  char *line = malloc(sizeof(char));
+  while(!feof(fp))
+  {
+    fscanf(fp,"%[^\n]\n",line);
+    
+    // printf("%ld\n",strlen(line));
+      char * word  = malloc(sizeof(char)*60);
+      char* reset = word;
+      char* res = malloc(sizeof(char)*256);
+    while((*line)!='\0'){
+      if(isalpha(*line)){
+        *word = *line;
+        word++;
+        line++;
+      }else{
+        *word = '\0';
+        word = reset;
+        strcat(res,reset);
+        char*x = malloc(sizeof(char)*2);
+        x[0]  = *line;
+        x[1] = '\0';
+        strcat(res,x);
+        line++;
+      }
+      if(*line=='\0'&& isalpha(*(line-1))){
+        strcat(res,reset);
+      }
+    }
+    fprintf(stdout,"%s\n",res);
+  }
     }
 
     printf("%s", out);
 //  fprintf(stderr, "Need to define processInput\n");
-//  exit(0);
+//  exit(0);}
 }
