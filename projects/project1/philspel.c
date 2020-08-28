@@ -1,5 +1,5 @@
 /*
- * Include the provided hashtable library.
+ * Include the provided hash table library.
  */
 #include "hashtable.h"
 
@@ -29,223 +29,254 @@
 #include <string.h>
 
 /*
- * this hashtable stores the dictionary.
+ * This hash table stores the dictionary.
  */
 HashTable *dictionary;
 
 /*
- * the MAIN routine.  You can safely print debugging information
- * to standard error (stderr) and it will be ignored in the grading
- * process, in the same way which this does.
+ * The MAIN routine.  You can safely print debugging information
+ * to standard error (stderr) as shown and it will be ignored in 
+ * the grading process.
  */
-int main(int argc, char **argv) {
-  if (argc != 2) {
-    fprintf(stderr, "Specify a dictionary\n");
-    return 0;
-  }
-  /*
-   * Allocate a hash table to store the dictionary
-   */
-  fprintf(stderr, "Creating hashtable\n");
-  dictionary = createHashTable(2255, &stringHash, &stringEquals);
-
-  fprintf(stderr, "Loading dictionary %s\n", argv[1]);
-  readDictionary(argv[1]);
-  fprintf(stderr, "Dictionary loaded\n");
-
-  fprintf(stderr, "Processing stdin\n");
-  processInput();
-
-  /* main in C should always return 0 as a way of telling
-     whatever program invoked this that everything went OK
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        fprintf(stderr, "Specify a dictionary\n");
+        return 0;
+    }
+    /*
+     * Allocate a hash table to store the dictionary.
      */
-  return 0;
+    fprintf(stderr, "Creating hashtable\n");
+    dictionary = createHashTable(2255, &stringHash, &stringEquals);
+
+    fprintf(stderr, "Loading dictionary %s\n", argv[1]);
+    readDictionary(argv[1]);
+    fprintf(stderr, "Dictionary loaded\n");
+
+    fprintf(stderr, "Processing stdin\n");
+    processInput();
+
+
+    /*
+     * The MAIN function in C should always return 0 as a way of telling
+     * whatever program invoked this that everything went OK.
+     */
+    return 0;
 }
 
 /*
- * You need to define this function. void *s can be safely casted
- * to a char * (null terminated string) which is done for you here for
- * convenience.
+ * This should hash a string to a bucket index.  Void *s can be safely cast
+ * to a char * (null terminated string) and is already done for you here 
+ * for convenience.
  */
-unsigned int stringHash(void *s) {
+unsigned int stringHash(void *s)
+{
     char *string = (char *)s;
-//  fprintf(stderr, "Need to define stringHash\n");
-//  exit(0);
-    if (string == NULL) {
-        fprintf(stderr, "undefined stringHash for NULL");
-        exit(0);
+    // -- TODO --
+    unsigned int hash = 5381;
+    int c;
+    while ((c = *(string++)))
+    {
+        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
     }
-    unsigned int hash= 0;
-    while (*(string) != '\0') {
-        hash = ((hash * NUMCHAR) % PRIME_BASE + *string) % PRIME_BASE;
-        string++;
-    }
-    return hash;
+    return hash % dictionary->size;
 }
 
 /*
- * You need to define this function.  It should return a nonzero
- * value if the two strings are identical (case sensitive comparison)
- * and 0 otherwise.
+ * This should return a nonzero value if the two strings are identical 
+ * (case sensitive comparison) and 0 otherwise.
  */
-int stringEquals(void *s1, void *s2) {
+int stringEquals(void *s1, void *s2)
+{
     char *string1 = (char *)s1;
     char *string2 = (char *)s2;
-//  fprintf(stderr, "Need to define stringEquals\n");
-//  exit(0);
-    while (*string1 != '\0' && *string2 != '\0') {
-        if (*string1 != *string2) {
-            return 0;
-        }
-        string1++;
-        string2++;
-    }
-
-    if (*string1 == '\0' && *string2 == '\0') {
+    // -- TODO --
+    if (strcmp(string1, string2) == 0) //equal
         return 1;
-    } else {
+    else
         return 0;
-    }
-}
-
-// read in an arbitrary length word from file, returns first char
-// that is not an alphabet. returns -1 at eof
-char readWord(FILE *fp, char **word, int size) {
-    int len = 0;
-    *word = malloc(sizeof(char) * size);
-    char c;
-    while (!feof(fp)) {
-        c = (char) fgetc(fp);
-        // reallocate memory if cannot hold
-        if (len == size) {
-            size = size * 2;
-            *word = realloc(*word, sizeof(char) * size);
-        }
-
-        // space and newline is the sign of the end of a word
-        if (!isalpha(c)) {
-            (*word)[len] = '\0';
-            return c;
-        } else {
-            (*word)[len] = c;
-        }
-        len++;
-    }
-
-    if (len == 0) {
-        return 0;
-    } else {
-        if (len == size) {
-            size += 1;
-            *word = realloc(*word, sizeof(char) * size);
-        }
-        (*word)[len] = '\0';
-        return 0;
-    }
 }
 
 /*
- * this function should read in every word in the dictionary and
- * store it in the dictionary.  You should first open the file specified,
+ * This function should read in every word from the dictionary and
+ * store it in the hash table.  You should first open the file specified,
  * then read the words one at a time and insert them into the dictionary.
- * Once the file is read in completely, exit.  You will need to allocate
- * (using malloc()) space for each word.  As described in the specs, you
+ * Once the file is read in completely, return.  You will need to allocate
+ * (using malloc()) space for each word.  As described in the spec, you
  * can initially assume that no word is longer than 60 characters.  However,
  * for the final 20% of your grade, you cannot assumed that words have a bounded
- * length.  You can NOT assume that the specified file exists.  If the file does
- * NOT exist, you should print some message to standard error and call exit(0)
+ * length.  You CANNOT assume that the specified file exists.  If the file does
+ * NOT exist, you should print some message to standard error and call exit(1)
  * to cleanly exit the program.
  *
- * Since the format is one word at a time, with returns in between,
+ * Since the format is one word at a time, with new lines in between,
  * you can safely use fscanf() to read in the strings until you want to handle
  * arbitrarily long dictionary chacaters.
  */
-void readDictionary(char *filename) {
-    FILE *fp = fopen(filename, "r");
-    // file doesn't exist, print information and exit
-    if (fp == NULL) {
-        fprintf(stderr, "file %s does not exist\n", filename);
-        exit(0);
+void readDictionary(char *dictName)
+{
+    FILE *fp;
+    fp = fopen(dictName, "r");
+    char *str1 = (char *)malloc(70);
+    int c;
+    int i = 0;
+    int total = 70;
+    if (fp == NULL)
+    {
+        fprintf(stderr, "Error in file opening\n");
+        exit(1);
     }
-    char *line = malloc(sizeof(char));
-    while(!feof(fp)){
-        fscanf(fp,"%[^\n]\n",line);
-        insertData(dictionary,(void*)line,(void*)line);
+    while ((c = fgetc(fp)) != EOF)
+    {
+        if (c == '\n')
+        {
+            str1[i] = '\0';
+            char *key = (char *)malloc((strlen(str1) + 1) * sizeof(char));
+            strcpy(key, str1);
+            if (findData(dictionary, key) == NULL)
+            {
+                insertData(dictionary, key, key);
+            }
+            i = 0;
+            // total = 70;
+            memset(str1, 0, strlen(str1));
+            continue;
+        }
+        if (i == total)
+        {
+            str1 = (char *)realloc(str1, total *= 2);
+        }
+        str1[i] = (char)c;
+        i++;
     }
+    free(str1);
     fclose(fp);
 }
 
-void appendWord(char **dest, unsigned int *size, char *word, char del) {
-    int end = strlen(*dest) + strlen(word) + 1;
-    if (*size <= end) {
-        *size = *size * 2;
-        *dest = realloc(*dest, sizeof(char) * *size);
+void readDictionaryI(char *dictName)
+{
+    // -- TODO --
+    FILE *fp;
+    fp = fopen(dictName,"r");
+    if (fp == NULL)
+    {
+        fprintf(stderr, "Error in file opening\n");
+        exit(1);
     }
-    strcat(*dest, word);
-    if (del != '\0' && del != -1) {
-        (*dest)[end - 1] = del;
-        (*dest)[end] = '\0';
-    }
+    char *line = (char*)malloc(sizeof(char)*70);
+    do{
+        fscanf(fp,"%s",line);
+        if (findData(dictionary, line) == NULL)
+            {
+                insertData(dictionary, line ,line);
+            }
+        memset(line,0,strlen(line));
+    }while(!feof(fp));
+    free(line);
+    fclose(fp);
 }
 
 /*
- * This should process standard input and copy it to standard output
- * as specified in specs.  EG, if a standard dictionary was used
- * and the string "this is a taest of  this-proGram" was given to
- * standard input, the output to standard output (stdout) should be
- * "this is a teast [sic] of  this-proGram".  All words should be checked
- * against the dictionary as they are input, again with all but the first
+ * This should process standard input (stdin) and copy it to standard
+ * output (stdout) as specified in the spec (e.g., if a standard 
+ * dictionary was used and the string "this is a taest of  this-proGram" 
+ * was given to stdin, the output to stdout should be 
+ * "this is a teast [sic] of  this-proGram").  All words should be checked
+ * against the dictionary as they are input, then with all but the first
  * letter converted to lowercase, and finally with all letters converted
  * to lowercase.  Only if all 3 cases are not in the dictionary should it
- * be reported as not being found, by appending " [sic]" after the
- * error.
+ * be reported as not found by appending " [sic]" after the error.
  *
- * Since we care about preserving whitespace, and pass on all non alphabet
- * characters untouched, and with all non alphabet characters acting as
- * word breaks, scanf() is probably insufficent (since it only considers
- * whitespace as breaking strings), so you will probably have
- * to get characters from standard input one at a time.
+ * Since we care about preserving whitespace and pass through all non alphabet
+ * characters untouched, scanf() is probably insufficent (since it only considers
+ * whitespace as breaking strings), meaning you will probably have
+ * to get characters from stdin one at a time.
  *
- * As stated in the specs, you can initially assume that no word is longer than
- * 60 characters, but you may have strings of non-alphabetic characters (eg,
- * numbers, punctuation) which are longer than 60 characters. For the final 20%
- * of your grade, you can no longer assume words have a bounded length.
+ * Do note that even under the initial assumption that no word is longer than 60
+ * characters, you may still encounter strings of non-alphabetic characters (e.g.,
+ * numbers and punctuation) which are longer than 60 characters. Again, for the 
+ * final 20% of your grade, you cannot assume words have a bounded length.
  */
-void processInput() {
-    FILE *fp = fopen("sampleInput","r");
-  char *line = malloc(sizeof(char));
-  while(!feof(fp))
-  {
-    fscanf(fp,"%[^\n]\n",line);
-    
-    // printf("%ld\n",strlen(line));
-      char * word  = malloc(sizeof(char)*60);
-      char* reset = word;
-      char* res = malloc(sizeof(char)*256);
-    while((*line)!='\0'){
-      if(isalpha(*line)){
-        *word = *line;
-        word++;
-        line++;
-      }else{
-        *word = '\0';
-        word = reset;
-        strcat(res,reset);
-        char*x = malloc(sizeof(char)*2);
-        x[0]  = *line;
-        x[1] = '\0';
-        strcat(res,x);
-        line++;
-      }
-      if(*line=='\0'&& isalpha(*(line-1))){
-        strcat(res,reset);
-      }
-    }
-    fprintf(stdout,"%s\n",res);
-  }
-    }
+void processInput()
+{
+    // -- TODO --
+    char *str1 = (char *)malloc(70);
+    char *str2 = (char *)malloc(70);
+    char *str3 = (char *)malloc(70);
+    int c = 0;
+    int i = 0;
+    int total = 70;
 
-    printf("%s", out);
-//  fprintf(stderr, "Need to define processInput\n");
-//  exit(0);}
+    while ((c = fgetc(stdin)) != EOF)
+    {
+
+        if (isalpha(c) != 0)
+        {
+            if (i == total)
+            {
+                str1 = (char *)realloc(str1, total * 2);
+                str2 = (char *)realloc(str2, total * 2);
+                str3 = (char *)realloc(str3, total * 2);
+                total = total * 2;
+            }
+            str1[i] = (char)c;
+            if (i == 0)
+            {
+                str2[i] = (char)c;
+            }
+            else
+            {
+                str2[i] = (char)tolower(c);
+            }
+            str3[i] = (char)tolower(c);
+            i++;
+        }
+        else
+        {
+            if (isalpha(str1[0]))
+            {
+                str1[i] = '\0';
+                str2[i] = '\0';
+                str3[i] = '\0';
+                if (findData(dictionary, str1) == NULL && findData(dictionary, str2) == NULL && findData(dictionary, str3) == NULL)
+                {
+                    fprintf(stdout, "%s [sic]%c", str1, c);
+                }
+                else
+                {
+                    fprintf(stdout, "%s%c", str1, c);
+                }
+            }
+            else
+            {
+                fprintf(stdout, "%c", c);
+            }
+            i = 0;
+            memset(str1, 0, strlen(str1));
+            memset(str2, 0, strlen(str2));
+            memset(str3, 0, strlen(str3));
+        }
+    }
+    if (isalpha(str1[0]))
+    {
+        str1[i] = '\0';
+        str2[i] = '\0';
+        str3[i] = '\0';
+        if (findData(dictionary, str1) == NULL && findData(dictionary, str2) == NULL && findData(dictionary, str3) == NULL)
+        {
+            fprintf(stdout, "%s [sic]", str1);
+        }
+        else
+        {
+            if (strlen(str1) != 0)
+            {
+                fprintf(stdout, "%s", str1);
+            }
+        }
+    }
+    free(str1);
+    free(str2);
+    free(str3);
 }
