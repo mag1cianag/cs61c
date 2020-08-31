@@ -115,7 +115,7 @@ int stringEquals(void *s1, void *s2)
  * you can safely use fscanf() to read in the strings until you want to handle
  * arbitrarily long dictionary chacaters.
  */
-void readDictionary(char *dictName)
+void readDictionaryI(char *dictName)
 {
     FILE *fp;
     fp = fopen(dictName, "r");
@@ -155,7 +155,7 @@ void readDictionary(char *dictName)
     fclose(fp);
 }
 
-void readDictionaryI(char *dictName)
+void readDictionary(char *dictName)
 {
     // -- TODO --
     FILE *fp;
@@ -166,14 +166,13 @@ void readDictionaryI(char *dictName)
         exit(1);
     }
     char *line = (char*)malloc(sizeof(char)*70);
-    do{
-        fscanf(fp,"%s",line);
+    while(fscanf(fp,"%s",line)!=EOF){
         if (findData(dictionary, line) == NULL)
             {
                 insertData(dictionary, line ,line);
             }
         memset(line,0,strlen(line));
-    }while(!feof(fp));
+    }
     free(line);
     fclose(fp);
 }
