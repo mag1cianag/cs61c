@@ -35,7 +35,7 @@ HashTable *dictionary;
 
 /*
  * The MAIN routine.  You can safely print debugging information
- * to standard error (stderr) as shown and it will be ignored in 
+ * to standard error (stderr) as shown and it will be ignored in
  * the grading process.
  */
 int main(int argc, char **argv)
@@ -52,7 +52,8 @@ int main(int argc, char **argv)
     dictionary = createHashTable(2255, &stringHash, &stringEquals);
 
     fprintf(stderr, "Loading dictionary %s\n", argv[1]);
-    readDictionary(argv[1]);
+//    readDictionary(argv[1]);
+    readDictionary("E:\\mjx\\ALLjobs\\Cworks\\phil\\sampleDictionary.txt");
     fprintf(stderr, "Dictionary loaded\n");
 
     fprintf(stderr, "Processing stdin\n");
@@ -68,7 +69,7 @@ int main(int argc, char **argv)
 
 /*
  * This should hash a string to a bucket index.  Void *s can be safely cast
- * to a char * (null terminated string) and is already done for you here 
+ * to a char * (null terminated string) and is already done for you here
  * for convenience.
  */
 unsigned int stringHash(void *s)
@@ -85,7 +86,7 @@ unsigned int stringHash(void *s)
 }
 
 /*
- * This should return a nonzero value if the two strings are identical 
+ * This should return a nonzero value if the two strings are identical
  * (case sensitive comparison) and 0 otherwise.
  */
 int stringEquals(void *s1, void *s2)
@@ -115,7 +116,7 @@ int stringEquals(void *s1, void *s2)
  * you can safely use fscanf() to read in the strings until you want to handle
  * arbitrarily long dictionary chacaters.
  */
-void readDictionary(char *dictName)
+void readDictionarya(char *dictName)
 {
     FILE *fp;
     fp = fopen(dictName, "r");
@@ -155,7 +156,7 @@ void readDictionary(char *dictName)
     fclose(fp);
 }
 
-void readDictionaryI(char *dictName)
+void readDictionary(char *dictName)
 {
     // -- TODO --
     FILE *fp;
@@ -168,10 +169,12 @@ void readDictionaryI(char *dictName)
     char *line = (char*)malloc(sizeof(char)*70);
     do{
         fscanf(fp,"%s",line);
-        if (findData(dictionary, line) == NULL)
-            {
-                insertData(dictionary, line ,line);
-            }
+        char *real = (char*)malloc(sizeof(char)*(strlen(line)+1));
+        strcpy(real,line);
+        if (findData(dictionary, real) == NULL)
+        {
+            insertData(dictionary, real ,real);
+        }
         memset(line,0,strlen(line));
     }while(!feof(fp));
     free(line);
@@ -180,9 +183,9 @@ void readDictionaryI(char *dictName)
 
 /*
  * This should process standard input (stdin) and copy it to standard
- * output (stdout) as specified in the spec (e.g., if a standard 
- * dictionary was used and the string "this is a taest of  this-proGram" 
- * was given to stdin, the output to stdout should be 
+ * output (stdout) as specified in the spec (e.g., if a standard
+ * dictionary was used and the string "this is a taest of  this-proGram"
+ * was given to stdin, the output to stdout should be
  * "this is a teast [sic] of  this-proGram").  All words should be checked
  * against the dictionary as they are input, then with all but the first
  * letter converted to lowercase, and finally with all letters converted
@@ -196,7 +199,7 @@ void readDictionaryI(char *dictName)
  *
  * Do note that even under the initial assumption that no word is longer than 60
  * characters, you may still encounter strings of non-alphabetic characters (e.g.,
- * numbers and punctuation) which are longer than 60 characters. Again, for the 
+ * numbers and punctuation) which are longer than 60 characters. Again, for the
  * final 20% of your grade, you cannot assume words have a bounded length.
  */
 void processInput()
