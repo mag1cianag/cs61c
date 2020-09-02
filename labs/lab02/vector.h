@@ -45,6 +45,7 @@ vector_t *vector_new();
 
 /* Free up the memory allocated for the passed vector */
 /* YOUR CODE HERE */
+void vector_delete(vector_t* v);
 
 /* Return the value in the vector */
 int vector_get(vector_t *v, size_t loc);
@@ -52,4 +53,5 @@ int vector_get(vector_t *v, size_t loc);
 /* Set a value in the vector */
 /* YOUR CODE HERE */
 
+void vector_set(vector_t *v, size_t loc, int value) ;
 #endif
