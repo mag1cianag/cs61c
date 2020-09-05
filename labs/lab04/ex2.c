@@ -1,4 +1,7 @@
+#include<stdio.h>
 int source[] = {3, 1, 4, 1, 5, 9, 0};
+
+
 int dest[10];
 
 int fun(int x) {
@@ -12,5 +15,6 @@ int main() {
         dest[k] = fun(source[k]);
         sum += dest[k];
     }
-    return sum;
+    printf("%d",sum); 
+    return 0;
 }
