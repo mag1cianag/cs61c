@@ -22,24 +22,18 @@ main:
 
 factorial:
     # YOUR CODE HERE
-    addi sp,sp -4
-    sw s0,0(sp)
-    addi s0,x0,1
-    beq a0,s0, endif
-    else:
-    addi sp,sp,-12
-    sw ra ,8(sp)
-    sw a0,4(sp)
-    sw a1,0(sp)
+    addi t0,x0,1
+    beq a0,t0, endif
+    addi sp,sp,-8
+    sw ra ,4(sp)
+    sw a0,0(sp)
     addi a0,a0,-1
     jal ra, factorial
-    mul a1,s0,a1
-    lw a1,0(sp)
-    lw a0,4(sp)
-    lw ra,8(sp)
-    addi sp,sp,12
+    lw t1,0(sp)
+    lw ra,4(sp)
+    mul a0,a0,t1
+    addi sp,sp,8
     ret
     endif:
-    addi a1,x0,1
-    lw s0,0(sp)
+    addi a0,x0,1
     ret
