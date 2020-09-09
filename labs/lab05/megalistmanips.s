@@ -13,7 +13,7 @@ end_msg:    .asciiz "Lists after: \n"
 .text
 main:
     jal create_default_list
-    mv s0, a0   # v0 = s0 is head of node list
+    mv s0, a0   # s0 = a0 is head of node list
 
     #print "lists before: "
     la a1, start_msg
@@ -47,8 +47,8 @@ main:
 
 map:
     addi sp, sp, -12
-    sw ra, 0(sp)
-    sw s1, 4(sp)
+    sw ra, 0(sp)  #ra is return address
+    sw s1, 4(sp) # want to use s0 and s1 ,so saved 
     sw s0, 8(sp)
 
     beq a0, x0, done    # if we were given a null pointer, we're done.
@@ -62,22 +62,37 @@ map:
     # - 4 for the size of the array
     # - 4 more for the pointer to the next node
 mapLoop:
-    add t1, s0, x0      # load the address of the array of current node into t1
-    lw t2, 4(s0)        # load the size of the node's array into t2
+	addi sp,sp,-4
+    sw t0,0(sp)
+    lw t1,0(s0)      # load the address of the array of current node into t1
+    
 
-    add t1, t1, t0      # offset the array address by the count
-    lw a0, 0(t1)        # load the value at that address into a0
+    slli t0,t0,2          #i*4
+    add t3, t1, t0      # offset the array address by the count
+    lw a0, 0(t3)        # load the value at that address into a0
 
+    addi sp ,sp ,-4
+    sw ra, 0(sp)
     jalr s1             # call the function on that value.
+    lw ra, 0(sp)
+    addi sp,sp ,4
 
-    sw a0, 0(t1)        # store the returned value back into the array
-    addi t0, t0, 1      # increment the count
+    sw a0, 0(t3)        # store the returned value back into the array
+   lw t0,0(sp)
+   addi sp,sp,4
+   lw t2,4(s0)
+   addi t0, t0, 1      # increment the count
     bne t0, t2, mapLoop # repeat if we haven't reached the array size yet
 
-    la a0, 8(s0)        # load the address of the next node into a0
-    lw a1, 0(s1)        # put the address of the function back into a1 to prepare for the recursion
+	
+    lw a0, 8(s0)        # load the address of the next node into a0
+    mv a1,s1     # put the address of the function back into a1 to prepare for the recursion
 
+    addi sp,sp,-4
+    sw ra,0(sp)
     jal  map            # recurse
+    lw ra,0(sp)
+    addi sp,sp,4
 done:
     lw s0, 8(sp)
     lw s1, 4(sp)
