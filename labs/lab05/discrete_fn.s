@@ -77,7 +77,15 @@ main:
 # Think: why might having a1 be useful?
 f:
     # YOUR CODE GOES HERE!
-
+    #就是把output数组里的东西取出来  -3 到 3 映射到 0到6 再取最后一字节 高位符号扩展
+    addi a0, a0, 3 #+3
+    slli a0, a0, 2# *4
+    add a0, a0, a1# offset
+    mv t0, x0
+    
+    lb t0, 0(a0)
+    mv a0, t0
+    jr ra        
     jr ra               # Always remember to jr ra after your function!
 
 print_int:
