@@ -64,6 +64,9 @@ classify:
     addi a2 sp 20
     jal ra read_matrix
     mv s4 a0 # address of input matreix
+
+
+
     # =====================================
     # RUN LAYERS
     # =====================================
@@ -93,6 +96,8 @@ classify:
     mv a5 t3
     mv a6 s6
     jal ra matmul
+
+
 
     # relu(hidden)
     mv a0 s6
@@ -133,7 +138,7 @@ classify:
     lw a3 20(sp)
     jal ra write_matrix
 
-    
+     
 
     # =====================================
     # CALCULATE CLASSIFICATION/LABEL

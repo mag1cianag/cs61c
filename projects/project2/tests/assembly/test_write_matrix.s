@@ -3,7 +3,7 @@
 
 .data
 m0: .word 1, 2, 3, 3, 3, 3, 7, 8, 9 # MAKE CHANGES HERE TO TEST DIFFERENT MATRICES
-file_path: .asciiz "../outputs/test_write_matrix/student_write_outputs.bin"
+file_path: .asciiz "../outputs/test_write_matrix/test.bin"
 
 .text
 main:
