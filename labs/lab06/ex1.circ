@@ -46,44 +46,44 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
   <lib desc="#I/O" name="5"/>
   <lib desc="#HDL-IP" name="6">
     <tool name="VHDL Entity">
-      <a name="content">--------------------------------------------------------------------------------
--- HEIG-VD, institute REDS, 1400 Yverdon-les-Bains
--- Project :
--- File    :
--- Autor   :
--- Date    :
---
---------------------------------------------------------------------------------
--- Description :
---
---------------------------------------------------------------------------------
-
-library ieee;
-  use ieee.std_logic_1164.all;
-  --use ieee.numeric_std.all;
-
-entity VHDL_Component is
-  port(
-  ------------------------------------------------------------------------------
-  --Insert input ports below
-    horloge_i  : in  std_logic;                    -- input bit example
-    val_i      : in  std_logic_vector(3 downto 0); -- input vector example
-  ------------------------------------------------------------------------------
-  --Insert output ports below
-    max_o      : out std_logic;                    -- output bit example
-    cpt_o      : out std_logic_Vector(3 downto 0)  -- output vector example
-    );
-end VHDL_Component;
-
---------------------------------------------------------------------------------
---Complete your VHDL description below
-architecture type_architecture of VHDL_Component is
-
-
-begin
-
-
-end type_architecture;
+      <a name="content">--------------------------------------------------------------------------------&#13;
+-- HEIG-VD, institute REDS, 1400 Yverdon-les-Bains&#13;
+-- Project :&#13;
+-- File    :&#13;
+-- Autor   :&#13;
+-- Date    :&#13;
+--&#13;
+--------------------------------------------------------------------------------&#13;
+-- Description :&#13;
+--&#13;
+--------------------------------------------------------------------------------&#13;
+&#13;
+library ieee;&#13;
+  use ieee.std_logic_1164.all;&#13;
+  --use ieee.numeric_std.all;&#13;
+&#13;
+entity VHDL_Component is&#13;
+  port(&#13;
+  ------------------------------------------------------------------------------&#13;
+  --Insert input ports below&#13;
+    horloge_i  : in  std_logic;                    -- input bit example&#13;
+    val_i      : in  std_logic_vector(3 downto 0); -- input vector example&#13;
+  ------------------------------------------------------------------------------&#13;
+  --Insert output ports below&#13;
+    max_o      : out std_logic;                    -- output bit example&#13;
+    cpt_o      : out std_logic_Vector(3 downto 0)  -- output vector example&#13;
+    );&#13;
+end VHDL_Component;&#13;
+&#13;
+--------------------------------------------------------------------------------&#13;
+--Complete your VHDL description below&#13;
+architecture type_architecture of VHDL_Component is&#13;
+&#13;
+&#13;
+begin&#13;
+&#13;
+&#13;
+end type_architecture;&#13;
 </a>
     </tool>
   </lib>
@@ -154,9 +154,13 @@ end TCL_Generic;
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
+    <wire from="(240,170)" to="(270,170)"/>
+    <wire from="(240,220)" to="(270,220)"/>
+    <wire from="(380,190)" to="(440,190)"/>
+    <wire from="(320,190)" to="(350,190)"/>
     <wire from="(440,200)" to="(460,200)"/>
-    <wire from="(240,220)" to="(260,220)"/>
-    <wire from="(240,170)" to="(260,170)"/>
+    <wire from="(440,190)" to="(440,200)"/>
+    <wire from="(270,210)" to="(270,220)"/>
     <comp lib="0" loc="(240,170)" name="Pin">
       <a name="label" val="A"/>
     </comp>
@@ -172,6 +176,8 @@ end TCL_Generic;
     <comp lib="8" loc="(350,128)" name="Text">
       <a name="text" val="PUT CIRCUITRY HERE"/>
     </comp>
+    <comp lib="1" loc="(320,190)" name="AND Gate"/>
+    <comp lib="1" loc="(380,190)" name="NOT Gate"/>
   </circuit>
   <circuit name="NOR1">
     <a name="circuit" val="NOR1"/>
@@ -180,9 +186,10 @@ end TCL_Generic;
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
-    <wire from="(480,220)" to="(490,220)"/>
-    <wire from="(290,200)" to="(300,200)"/>
-    <wire from="(290,240)" to="(300,240)"/>
+    <wire from="(400,220)" to="(490,220)"/>
+    <wire from="(360,220)" to="(370,220)"/>
+    <wire from="(290,200)" to="(310,200)"/>
+    <wire from="(290,240)" to="(310,240)"/>
     <comp lib="0" loc="(290,200)" name="Pin">
       <a name="label" val="A"/>
     </comp>
@@ -198,6 +205,8 @@ end TCL_Generic;
     <comp lib="8" loc="(394,148)" name="Text">
       <a name="text" val="PUT CIRCUITRY HERE"/>
     </comp>
+    <comp lib="1" loc="(360,220)" name="OR Gate"/>
+    <comp lib="1" loc="(400,220)" name="NOT Gate"/>
   </circuit>
   <circuit name="XOR1">
     <a name="circuit" val="XOR1"/>
@@ -206,9 +215,21 @@ end TCL_Generic;
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
+    <wire from="(370,300)" to="(430,300)"/>
+    <wire from="(360,180)" to="(360,280)"/>
+    <wire from="(440,190)" to="(500,190)"/>
+    <wire from="(470,280)" to="(500,280)"/>
+    <wire from="(360,180)" to="(390,180)"/>
     <wire from="(260,260)" to="(280,260)"/>
-    <wire from="(260,180)" to="(280,180)"/>
-    <wire from="(620,220)" to="(630,220)"/>
+    <wire from="(280,260)" to="(280,300)"/>
+    <wire from="(500,190)" to="(500,200)"/>
+    <wire from="(390,170)" to="(390,180)"/>
+    <wire from="(500,240)" to="(500,280)"/>
+    <wire from="(280,300)" to="(360,300)"/>
+    <wire from="(390,210)" to="(390,260)"/>
+    <wire from="(280,260)" to="(390,260)"/>
+    <wire from="(260,180)" to="(360,180)"/>
+    <wire from="(550,220)" to="(630,220)"/>
     <comp lib="0" loc="(260,180)" name="Pin">
       <a name="label" val="A"/>
     </comp>
@@ -224,6 +245,9 @@ end TCL_Generic;
     <comp lib="8" loc="(404,110)" name="Text">
       <a name="text" val="PUT CIRCUITRY HERE"/>
     </comp>
+    <comp loc="(470,280)" name="NAND1"/>
+    <comp lib="1" loc="(440,190)" name="OR Gate"/>
+    <comp lib="1" loc="(550,220)" name="AND Gate"/>
   </circuit>
   <circuit name="MUX2">
     <a name="circuit" val="MUX2"/>
@@ -232,10 +256,10 @@ end TCL_Generic;
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
+    <wire from="(770,240)" to="(780,240)"/>
     <wire from="(250,190)" to="(270,190)"/>
     <wire from="(250,260)" to="(270,260)"/>
     <wire from="(250,300)" to="(270,300)"/>
-    <wire from="(770,240)" to="(780,240)"/>
     <comp lib="0" loc="(250,190)" name="Pin">
       <a name="label" val="A"/>
     </comp>
@@ -263,12 +287,12 @@ end TCL_Generic;
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
     <wire from="(250,440)" to="(270,440)"/>
+    <wire from="(690,300)" to="(700,300)"/>
     <wire from="(250,390)" to="(270,390)"/>
     <wire from="(250,340)" to="(270,340)"/>
     <wire from="(250,290)" to="(270,290)"/>
     <wire from="(250,240)" to="(270,240)"/>
     <wire from="(250,190)" to="(270,190)"/>
-    <wire from="(690,300)" to="(700,300)"/>
     <comp lib="0" loc="(250,190)" name="Pin">
       <a name="label" val="A"/>
     </comp>
