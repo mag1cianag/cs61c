@@ -154,13 +154,12 @@ end TCL_Generic;
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
-    <wire from="(240,170)" to="(270,170)"/>
-    <wire from="(240,220)" to="(270,220)"/>
-    <wire from="(380,190)" to="(440,190)"/>
-    <wire from="(320,190)" to="(350,190)"/>
-    <wire from="(440,200)" to="(460,200)"/>
-    <wire from="(440,190)" to="(440,200)"/>
-    <wire from="(270,210)" to="(270,220)"/>
+    <wire from="(260,180)" to="(280,180)"/>
+    <wire from="(410,200)" to="(460,200)"/>
+    <wire from="(240,220)" to="(280,220)"/>
+    <wire from="(330,200)" to="(380,200)"/>
+    <wire from="(260,170)" to="(260,180)"/>
+    <wire from="(240,170)" to="(260,170)"/>
     <comp lib="0" loc="(240,170)" name="Pin">
       <a name="label" val="A"/>
     </comp>
@@ -176,8 +175,8 @@ end TCL_Generic;
     <comp lib="8" loc="(350,128)" name="Text">
       <a name="text" val="PUT CIRCUITRY HERE"/>
     </comp>
-    <comp lib="1" loc="(320,190)" name="AND Gate"/>
-    <comp lib="1" loc="(380,190)" name="NOT Gate"/>
+    <comp lib="1" loc="(330,200)" name="AND Gate"/>
+    <comp lib="1" loc="(410,200)" name="NOT Gate"/>
   </circuit>
   <circuit name="NOR1">
     <a name="circuit" val="NOR1"/>
@@ -186,10 +185,10 @@ end TCL_Generic;
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
-    <wire from="(400,220)" to="(490,220)"/>
-    <wire from="(360,220)" to="(370,220)"/>
-    <wire from="(290,200)" to="(310,200)"/>
-    <wire from="(290,240)" to="(310,240)"/>
+    <wire from="(430,220)" to="(490,220)"/>
+    <wire from="(290,200)" to="(320,200)"/>
+    <wire from="(290,240)" to="(320,240)"/>
+    <wire from="(370,220)" to="(400,220)"/>
     <comp lib="0" loc="(290,200)" name="Pin">
       <a name="label" val="A"/>
     </comp>
@@ -205,8 +204,8 @@ end TCL_Generic;
     <comp lib="8" loc="(394,148)" name="Text">
       <a name="text" val="PUT CIRCUITRY HERE"/>
     </comp>
-    <comp lib="1" loc="(360,220)" name="OR Gate"/>
-    <comp lib="1" loc="(400,220)" name="NOT Gate"/>
+    <comp lib="1" loc="(370,220)" name="OR Gate"/>
+    <comp lib="1" loc="(430,220)" name="NOT Gate"/>
   </circuit>
   <circuit name="XOR1">
     <a name="circuit" val="XOR1"/>
@@ -215,21 +214,24 @@ end TCL_Generic;
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
-    <wire from="(370,300)" to="(430,300)"/>
-    <wire from="(360,180)" to="(360,280)"/>
-    <wire from="(440,190)" to="(500,190)"/>
-    <wire from="(470,280)" to="(500,280)"/>
-    <wire from="(360,180)" to="(390,180)"/>
-    <wire from="(260,260)" to="(280,260)"/>
-    <wire from="(280,260)" to="(280,300)"/>
-    <wire from="(500,190)" to="(500,200)"/>
-    <wire from="(390,170)" to="(390,180)"/>
-    <wire from="(500,240)" to="(500,280)"/>
-    <wire from="(280,300)" to="(360,300)"/>
-    <wire from="(390,210)" to="(390,260)"/>
-    <wire from="(280,260)" to="(390,260)"/>
-    <wire from="(260,180)" to="(360,180)"/>
-    <wire from="(550,220)" to="(630,220)"/>
+    <wire from="(290,180)" to="(350,180)"/>
+    <wire from="(480,280)" to="(510,280)"/>
+    <wire from="(510,240)" to="(540,240)"/>
+    <wire from="(260,180)" to="(290,180)"/>
+    <wire from="(260,260)" to="(310,260)"/>
+    <wire from="(310,150)" to="(310,260)"/>
+    <wire from="(480,170)" to="(500,170)"/>
+    <wire from="(380,260)" to="(430,260)"/>
+    <wire from="(380,190)" to="(430,190)"/>
+    <wire from="(310,150)" to="(430,150)"/>
+    <wire from="(510,240)" to="(510,280)"/>
+    <wire from="(380,180)" to="(380,190)"/>
+    <wire from="(290,300)" to="(430,300)"/>
+    <wire from="(590,220)" to="(630,220)"/>
+    <wire from="(500,170)" to="(500,200)"/>
+    <wire from="(290,180)" to="(290,300)"/>
+    <wire from="(310,260)" to="(350,260)"/>
+    <wire from="(500,200)" to="(540,200)"/>
     <comp lib="0" loc="(260,180)" name="Pin">
       <a name="label" val="A"/>
     </comp>
@@ -245,9 +247,11 @@ end TCL_Generic;
     <comp lib="8" loc="(404,110)" name="Text">
       <a name="text" val="PUT CIRCUITRY HERE"/>
     </comp>
-    <comp loc="(470,280)" name="NAND1"/>
-    <comp lib="1" loc="(440,190)" name="OR Gate"/>
-    <comp lib="1" loc="(550,220)" name="AND Gate"/>
+    <comp lib="1" loc="(480,170)" name="AND Gate"/>
+    <comp lib="1" loc="(480,280)" name="AND Gate"/>
+    <comp lib="1" loc="(380,260)" name="NOT Gate"/>
+    <comp lib="1" loc="(380,180)" name="NOT Gate"/>
+    <comp lib="1" loc="(590,220)" name="OR Gate"/>
   </circuit>
   <circuit name="MUX2">
     <a name="circuit" val="MUX2"/>
@@ -256,28 +260,47 @@ end TCL_Generic;
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
-    <wire from="(770,240)" to="(780,240)"/>
-    <wire from="(250,190)" to="(270,190)"/>
-    <wire from="(250,260)" to="(270,260)"/>
-    <wire from="(250,300)" to="(270,300)"/>
+    <wire from="(290,280)" to="(290,380)"/>
+    <wire from="(340,380)" to="(400,380)"/>
+    <wire from="(310,340)" to="(400,340)"/>
+    <wire from="(200,280)" to="(290,280)"/>
+    <wire from="(450,360)" to="(480,360)"/>
+    <wire from="(460,230)" to="(490,230)"/>
+    <wire from="(250,190)" to="(310,190)"/>
+    <wire from="(290,380)" to="(310,380)"/>
+    <wire from="(480,300)" to="(530,300)"/>
+    <wire from="(290,250)" to="(410,250)"/>
+    <wire from="(580,280)" to="(780,280)"/>
+    <wire from="(310,190)" to="(310,340)"/>
+    <wire from="(340,210)" to="(340,360)"/>
+    <wire from="(490,230)" to="(490,260)"/>
+    <wire from="(290,250)" to="(290,280)"/>
+    <wire from="(480,300)" to="(480,360)"/>
+    <wire from="(240,360)" to="(340,360)"/>
+    <wire from="(340,210)" to="(410,210)"/>
+    <wire from="(490,260)" to="(530,260)"/>
     <comp lib="0" loc="(250,190)" name="Pin">
       <a name="label" val="A"/>
     </comp>
-    <comp lib="0" loc="(780,240)" name="Pin">
+    <comp lib="8" loc="(507,102)" name="Text">
+      <a name="text" val="PUT CIRCUITRY HERE"/>
+    </comp>
+    <comp lib="0" loc="(780,280)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="label" val="RESULT"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="8" loc="(507,102)" name="Text">
-      <a name="text" val="PUT CIRCUITRY HERE"/>
-    </comp>
-    <comp lib="0" loc="(250,260)" name="Pin">
+    <comp lib="0" loc="(240,360)" name="Pin">
       <a name="label" val="B"/>
     </comp>
-    <comp lib="0" loc="(250,300)" name="Pin">
+    <comp lib="0" loc="(200,280)" name="Pin">
       <a name="label" val="Sel"/>
     </comp>
+    <comp lib="1" loc="(460,230)" name="AND Gate"/>
+    <comp lib="1" loc="(450,360)" name="AND Gate"/>
+    <comp lib="1" loc="(340,380)" name="NOT Gate"/>
+    <comp lib="1" loc="(580,280)" name="OR Gate"/>
   </circuit>
   <circuit name="MUX4">
     <a name="circuit" val="MUX4"/>
@@ -286,31 +309,30 @@ end TCL_Generic;
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
-    <wire from="(250,440)" to="(270,440)"/>
+    <wire from="(530,300)" to="(530,310)"/>
+    <wire from="(200,360)" to="(360,360)"/>
+    <wire from="(530,300)" to="(550,300)"/>
+    <wire from="(200,280)" to="(290,280)"/>
+    <wire from="(500,310)" to="(530,310)"/>
+    <wire from="(670,280)" to="(690,280)"/>
+    <wire from="(290,240)" to="(290,280)"/>
+    <wire from="(360,180)" to="(360,220)"/>
+    <wire from="(360,250)" to="(360,260)"/>
+    <wire from="(360,350)" to="(360,360)"/>
+    <wire from="(360,260)" to="(370,260)"/>
+    <wire from="(190,180)" to="(360,180)"/>
+    <wire from="(550,320)" to="(550,350)"/>
+    <wire from="(160,250)" to="(360,250)"/>
+    <wire from="(360,390)" to="(360,420)"/>
+    <wire from="(480,220)" to="(480,280)"/>
     <wire from="(690,300)" to="(700,300)"/>
-    <wire from="(250,390)" to="(270,390)"/>
-    <wire from="(250,340)" to="(270,340)"/>
-    <wire from="(250,290)" to="(270,290)"/>
-    <wire from="(250,240)" to="(270,240)"/>
-    <wire from="(250,190)" to="(270,190)"/>
-    <comp lib="0" loc="(250,190)" name="Pin">
-      <a name="label" val="A"/>
-    </comp>
-    <comp lib="0" loc="(250,240)" name="Pin">
-      <a name="label" val="B"/>
-    </comp>
-    <comp lib="0" loc="(250,290)" name="Pin">
-      <a name="label" val="C"/>
-    </comp>
-    <comp lib="0" loc="(250,340)" name="Pin">
-      <a name="label" val="D"/>
-    </comp>
-    <comp lib="0" loc="(250,390)" name="Pin">
-      <a name="label" val="Sel1"/>
-    </comp>
-    <comp lib="0" loc="(250,440)" name="Pin">
-      <a name="label" val="Sel2"/>
-    </comp>
+    <wire from="(230,420)" to="(360,420)"/>
+    <wire from="(480,280)" to="(550,280)"/>
+    <wire from="(480,350)" to="(550,350)"/>
+    <wire from="(290,240)" to="(360,240)"/>
+    <wire from="(290,280)" to="(290,370)"/>
+    <wire from="(290,370)" to="(360,370)"/>
+    <wire from="(690,280)" to="(690,300)"/>
     <comp lib="0" loc="(700,300)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -319,6 +341,27 @@ end TCL_Generic;
     </comp>
     <comp lib="8" loc="(470,108)" name="Text">
       <a name="text" val="PUT CIRCUITRY HERE"/>
+    </comp>
+    <comp loc="(480,220)" name="MUX2"/>
+    <comp loc="(480,350)" name="MUX2"/>
+    <comp loc="(670,280)" name="MUX2"/>
+    <comp lib="0" loc="(230,420)" name="Pin">
+      <a name="label" val="D"/>
+    </comp>
+    <comp lib="0" loc="(200,280)" name="Pin">
+      <a name="label" val="Sel1"/>
+    </comp>
+    <comp lib="0" loc="(190,180)" name="Pin">
+      <a name="label" val="A"/>
+    </comp>
+    <comp lib="0" loc="(160,250)" name="Pin">
+      <a name="label" val="B"/>
+    </comp>
+    <comp lib="0" loc="(200,360)" name="Pin">
+      <a name="label" val="C"/>
+    </comp>
+    <comp lib="0" loc="(500,310)" name="Pin">
+      <a name="label" val="Sel2"/>
     </comp>
   </circuit>
 </project>
