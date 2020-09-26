@@ -8,7 +8,7 @@
 ## 直接映射(direct mapped)
 
 根据字的主存地址
-(*块地址*)mod(cache中的块数)
+(**块地址**)mod(cache中的块数)
 
 cache不仅储存数据也储存标记位,cache所需的总位数是cache大小和地址位数的函数  
 ex:
@@ -27,3 +27,29 @@ ex:
 1. 计算块地址,即将主存划分成块
 2. 再将块映射到cache中的某一块
 
+## 全相连(fully associative)
+
+Each memory block can map anywhere in the cache.
+
+* Most efficient use of space
+* Least efficient to check
+
+Offset field: Lowest bits of memory address can be used to index to specific (**bytes**) within a block.  
+Tag field: Leftovr upper bits of memory address determine which portion of memory the block came from (identifier)  
+
+To check a fully associative cache:
+
+1. Look at ALL cache slots in sequence
+2. If Valid bit is 0,then ignore
+3. If Valid bit is 1 and Tag matches,then return that data
+
+Cache must store valid and tag bits.  
+
+## 组相联(set associative)
+
+Hit rate(HR): Percentage of memory accesses in a program or set of instructions
+that result in a cache hit  
+Miss rate(MR): Like hit rate,but for cache misses  
+
+Hit time (HT): Time to access cache(including Tag comparsion)  
+Miss penalty(MP): Time to replace a block in the cache from a lower level in the memory hierarchy  
