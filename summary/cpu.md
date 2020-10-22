@@ -28,8 +28,15 @@ CPU fetches,interprets,and execute successive instructions of the program.
 
 Instructions are the fundamental unit of work.  
 Each instruction specifies an operation or opcode to be performed and source operands and destination for the result.  
-  
+
 CPU logically implements : Fetch -> Decode -> Read src ->Execute ->Write dst -> compute next PC and go back for next loop.  
+
+For every instruction,the first two steps are identical:
+
+1. Sent the *program counter* to the memory that contains the code and fetch the instruction from that memory.
+2. Read one or two registers, using fields of the instruction to select the registers to read.
+
+All instruction classes use the arithmetic-logic unit after reading the registers.The memory-reference instructions use the ALU for an address calculation,the arithmetic-logical instructions for the operation execution, and condition branches for the equality test.
 
 ### R type instrucions
 

@@ -47,9 +47,50 @@ Cache must store valid and tag bits.
 
 ## 组相联(set associative)
 
+more flexible than DM,more structured than FA  
+N-away set-associative: Divide $ into sets,each of which consists of N slots
+
+* Memory block maps to a set determined by index field and is placed in any of the N slots of that set
+* Call N the associativity
+* Replacement policy applies to every set
+
 Hit rate(HR): Percentage of memory accesses in a program or set of instructions
 that result in a cache hit  
 Miss rate(MR): Like hit rate,but for cache misses  
 
 Hit time (HT): Time to access cache(including Tag comparsion)  
 Miss penalty(MP): Time to replace a block in the cache from a lower level in the memory hierarchy  
+
+when load a block ,load the block with 0 offset  
+
+## Average Memory Access Time
+
+Average Memory Access Time: Hit time + Miss rate * Miss penalty  
+
+Cache size dreases -> hit time decreases
+As associativity increases,so dose hit time
+
+Compulsory: cold start  
+
+Capacity: Cache connot contain all blocks accessed by the program,so full associativity won't hold all blocks  
+
+Conflict: Multiple memory locations mapped to the same cache location,so there's a lack of associativity  
+
+Solutions
+Compulsory:
+
+* increase block size(increase MP;too large blocks could increase MR)
+
+Capactiy
+
+* increase cache size (increase HT)
+
+Conflict:
+
+* increase associativity(increase HT)
+
+## Multilevel cache
+
+L1$ focuses on low hit time  
+
+L2$,L3$ focus on low miss rate 
