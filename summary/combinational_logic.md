@@ -21,3 +21,14 @@ Blocks with memory,the outputs can depend on both the inputs and the value store
 
 All logic funcitions can be constructed with only a single gate type,if that gate is inverting.The two common inverting gates are called NOR and NAND .
 
+**decoder**: A logic block that has an *n*-bit input and $$2^{n}$$ outputs,where only one output is asserted for each input combination.
+
+We can represent the logic function computed by a two-input multiplexor,as $$C = (A\cdot S)+(B\cdot S)$$ 
+
+Any logic function can be written in a canonical from,where every input is either a  true or complemented varivable and there are only two levels of gates-one being AND and the other OR-with a possible inversion on the final output.
+
+**sum of products**: A form of logical representation that employs a logical sum(OR) of products (terms joined using the AND operator)
+
+Each truth table entry for which the function is true corresponds to a product term.The product term consists of a logical product of all the inputs or the complements of the inputs,depending on whether the entry in the truth table has a 0 or 1 cooresponding to this variable.
+
+**bus**: In logic design,a collection of data lines that is treated together as a single logical signal;also,a shared collection of lines with multiple sources and uses.
