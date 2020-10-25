@@ -38,7 +38,36 @@ For every instruction,the first two steps are identical:
 
 All instruction classes use the arithmetic-logic unit after reading the registers.The memory-reference instructions use the ALU for an address calculation,the arithmetic-logical instructions for the operation execution, and condition branches for the equality test.
 
-**register file** : A state element that consists of a set of registers that can be read and written by supplying a register number to be accessed.
+### Register File
+
+A state element that consists of a set of registers that can be read and written by supplying a register number to be accessed.
+
+Consists of 31 registers:
+
+* output ports portA and portB
+* input port portW
+
+Register selection:
+
+- place data of register RA onto portA
+- place data of regiser RB onto portB
+- Store data on portW into register RW when Write Enable is 1
+
+Clock input
+
+* CLK is passed to all internal registers so they can be written to if they match RW and Write Enable is 1
+
+### Idealized Memory
+
+* Memory(idealized) 
+* * one input port: Data in
+  * ont output port: Data Out
+* Memory access
+* * Read: Write Enable = 0,data at Address is placed on Data Out
+  * Wirte: Write Enable = 1,Data In wirtten to Address
+* Clock input (CLK)
+* * CLK input is a factor ONLY during wirte operation
+  * During read ,behaves as a combinational logic block:Address valid -> Data Out valid after "access time"
 
 ### R type instrucions
 
@@ -63,3 +92,11 @@ two details in the definition of branch instructions:
 * the instruction set architecture specifies that the base for the branch address calculation is the address of the branch instruction.
 * the architecture also states that the offset field is shifted left 1 bit so that it is a half word offset;this shift increases the effective range of the offset field by a factor of 2.
 
+**Control logic** 
+
+* ALUSel
+* RWEn
+* BSel
+* ImmSel
+* MemRW
+* WBSel
