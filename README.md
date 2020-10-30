@@ -1,6 +1,6 @@
 # cs61c
 
-ucb cs61c
+ucb cs61c sp20
 
 Unconditional Control Instructions:
   
