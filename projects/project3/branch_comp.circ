@@ -132,34 +132,59 @@
       <text fill="#404040" font-family="Dialog" font-size="12" text-anchor="start" x="67" y="228">BrUn</text>
       <text fill="#404040" font-family="Dialog" font-size="12" text-anchor="end" x="135" y="228">BrEq</text>
       <circ-port height="10" pin="950,130" width="10" x="115" y="235"/>
-      <circ-port height="8" pin="200,250" width="8" x="56" y="176"/>
       <circ-port height="8" pin="200,310" width="8" x="76" y="236"/>
-      <circ-port height="10" pin="950,180" width="10" x="155" y="235"/>
       <circ-port height="8" pin="200,160" width="8" x="56" y="136"/>
+      <circ-port height="10" pin="950,180" width="10" x="155" y="235"/>
+      <circ-port height="8" pin="200,250" width="8" x="56" y="176"/>
       <text fill="#404040" font-family="Dialog" font-size="12" text-anchor="end" x="171" y="228">BrLt</text>
       <rect fill="none" height="120" rx="10" ry="10" stroke="#000000" stroke-width="2" width="120" x="60" y="120"/>
       <text font-family="SansSerif" font-size="16" font-weight="bold" text-anchor="middle" x="119" y="178">Branch</text>
       <text font-family="SansSerif" font-size="16" font-weight="bold" text-anchor="middle" x="119" y="195">Comp</text>
       <circ-anchor facing="south" height="6" width="6" x="117" y="237"/>
     </appear>
-    <wire from="(1020,100)" to="(1020,210)"/>
-    <wire from="(930,130)" to="(950,130)"/>
-    <wire from="(930,180)" to="(950,180)"/>
+    <wire from="(470,320)" to="(530,320)"/>
     <wire from="(930,150)" to="(930,160)"/>
     <wire from="(930,200)" to="(930,210)"/>
     <wire from="(930,100)" to="(930,110)"/>
+    <wire from="(220,330)" to="(220,340)"/>
+    <wire from="(410,140)" to="(410,150)"/>
+    <wire from="(420,290)" to="(420,300)"/>
+    <wire from="(420,400)" to="(420,410)"/>
+    <wire from="(560,330)" to="(600,330)"/>
+    <wire from="(400,170)" to="(400,190)"/>
+    <wire from="(410,320)" to="(410,340)"/>
+    <wire from="(410,430)" to="(410,450)"/>
+    <wire from="(220,270)" to="(220,290)"/>
+    <wire from="(500,340)" to="(500,430)"/>
+    <wire from="(540,350)" to="(540,390)"/>
+    <wire from="(1020,100)" to="(1020,210)"/>
+    <wire from="(930,130)" to="(950,130)"/>
+    <wire from="(930,180)" to="(950,180)"/>
+    <wire from="(460,160)" to="(490,160)"/>
+    <wire from="(470,430)" to="(500,430)"/>
+    <wire from="(500,340)" to="(530,340)"/>
     <wire from="(930,100)" to="(1020,100)"/>
     <wire from="(930,210)" to="(1020,210)"/>
-    <wire from="(220,330)" to="(220,340)"/>
+    <wire from="(390,140)" to="(410,140)"/>
+    <wire from="(400,170)" to="(420,170)"/>
+    <wire from="(400,290)" to="(420,290)"/>
+    <wire from="(410,320)" to="(430,320)"/>
+    <wire from="(400,400)" to="(420,400)"/>
+    <wire from="(410,430)" to="(430,430)"/>
     <wire from="(220,100)" to="(220,140)"/>
     <wire from="(200,310)" to="(220,310)"/>
     <wire from="(200,160)" to="(220,160)"/>
     <wire from="(200,250)" to="(220,250)"/>
+    <wire from="(390,190)" to="(400,190)"/>
+    <wire from="(410,150)" to="(420,150)"/>
+    <wire from="(400,340)" to="(410,340)"/>
+    <wire from="(420,300)" to="(430,300)"/>
+    <wire from="(400,450)" to="(410,450)"/>
+    <wire from="(420,410)" to="(430,410)"/>
     <wire from="(220,180)" to="(220,230)"/>
     <wire from="(80,100)" to="(80,340)"/>
     <wire from="(80,340)" to="(220,340)"/>
     <wire from="(80,100)" to="(220,100)"/>
-    <wire from="(220,270)" to="(220,290)"/>
     <comp lib="5" loc="(156,94)" name="Text">
       <a name="text" val="INPUTS to your circuit"/>
     </comp>
@@ -210,6 +235,59 @@
       <a name="output" val="true"/>
       <a name="label" val="BrLt"/>
       <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(390,140)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="width" val="32"/>
+      <a name="label" val="rs1"/>
+    </comp>
+    <comp lib="0" loc="(390,190)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="width" val="32"/>
+      <a name="label" val="rs2"/>
+    </comp>
+    <comp lib="3" loc="(460,160)" name="Comparator">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(490,160)" name="Tunnel">
+      <a name="label" val="BrEq"/>
+    </comp>
+    <comp lib="0" loc="(400,340)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="width" val="32"/>
+      <a name="label" val="rs2"/>
+    </comp>
+    <comp lib="0" loc="(400,290)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="width" val="32"/>
+      <a name="label" val="rs1"/>
+    </comp>
+    <comp lib="3" loc="(470,310)" name="Comparator">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(400,400)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="width" val="32"/>
+      <a name="label" val="rs1"/>
+    </comp>
+    <comp lib="0" loc="(400,450)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="width" val="32"/>
+      <a name="label" val="rs2"/>
+    </comp>
+    <comp lib="3" loc="(470,420)" name="Comparator">
+      <a name="width" val="32"/>
+      <a name="mode" val="unsigned"/>
+    </comp>
+    <comp lib="2" loc="(560,330)" name="Multiplexer">
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="0" loc="(540,390)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="BrUn"/>
+    </comp>
+    <comp lib="0" loc="(600,330)" name="Tunnel">
+      <a name="label" val="BrLt"/>
     </comp>
   </circuit>
 </project>
